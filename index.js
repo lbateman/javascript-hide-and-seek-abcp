@@ -18,29 +18,25 @@ function increaseRankBy(n) {
 }
 
 function deepestChild() {
-	var i;
-	var current = document.querySelectorAll("div");
-	var next = [];
+	var i; // index variable
+	var current = document.querySelectorAll("div"); // selects all divs in the document; could be generalized to all elements, i guess
+	var next = []; // empty array to push elements into so we can pop them back off onto current
 	
-	console.log("Original length: " + current.length);
-	
+	// run a loop to copy all contents of current (object) into next (array)
 	for (i = 0; i < current.length; i++) {
 		next.push(current[i]);
 	}
-	
-	console.log(next)
-	console.log(current)
 
-// so now we have an array of all the div nodes under #grand-node
-// we need to remove the top node -- 
-	
-	while (next.length > 0) {
-		console.log("Starting while!")
+	// pop off elements till we get to #grand-node
+	while (current.id != "grand-node") {
 		current = next.shift();
-		console.log(current);
-		console.log(next);
 	}
 	
-	console.log("Done with while!")
+	// as long as there's something in next, pop it into current
+	while (next.length > 0) {
+		current = next.shift();
+	}
+
+	// once we're down to next.length = 0, return whatever is in current
 	return current;
 }
